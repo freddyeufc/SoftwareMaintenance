@@ -1,0 +1,88 @@
+data;
+set PROF := Prof01 Prof02;
+
+set DISCI := FUP1 FUP2 POO ARQ1; 
+
+set SALA:= Sala01 Sala02; 		# SALA - S
+
+set COMBO:= CB01 CB02 CB03 CB04; 	# COMBO - B
+
+set HORARIO:= h0800_1000 h1000_1200 h0800_1100; 	# HORARIO - H
+
+set SEMESTRE := S1 S2;
+
+set CURSO := CC SOFT;
+
+# A partir daqui
+
+param: MINHp MAXHp:=
+Prof01 4 20
+Prof02 4 20;
+
+param Z :=
+[Prof01, *, *](tr): 
+            FUP1 FUP2 POO ARQ1:=
+CB01     100 100 0 0
+CB02     0 0 100 0 
+CB03     0 0 0 100 
+CB04     0 0 0 0 
+
+[Prof02, *, *](tr):
+            FUP1 FUP2 POO ARQ1:=
+CB01         100 100 0 0  
+CB02        0 0 0 0 
+CB03        0 0 0 0
+CB04        0 0 0 0;
+
+param: Nc:=
+FUP1 6
+FUP2 6
+POO 4
+ARQ1 3;
+
+param Sem := 
+[*, *, CC]: 
+            S1  S2 :=
+FUP1    1    0
+FUP2    0   0
+POO     0    1
+ARQ1    1    0
+
+[*, *, SOFT]: 
+             S1 S2 :=
+FUP1    0   0
+FUP2    1    0
+POO     0   0
+ARQ1    0   0;
+
+param Tsalas := 6;
+
+param: Cap := 
+Sala01 50
+Sala02 60;
+
+param TamTurma := 
+FUP1 50
+FUP2 50
+POO 60
+ARQ1 50;
+
+param CompHC:
+            h0800_1000 h1000_1200 h0800_1100 := 
+CB01        1                               1                  0
+CB02       1                               1                  0
+CB03       0                              0                1
+CB04       1                               1                  0;
+
+param Sobh:
+                             h0800_1000 h1000_1200 h0800_1100 := 
+h0800_1000      0                               0                   1
+h1000_1200       0                               0                   1
+h0800_1100      1                                   1                0;
+
+param Sob: 
+            CB01 CB02 CB03 CB04:= 
+CB01    0           0           1       1
+CB02    0            0          0       0
+CB03    1           0           0      1
+CB04   1            0           1      0;
