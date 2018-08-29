@@ -1,0 +1,4 @@
+model PlanejamentoAcademico.mod;
+data PlanejamentoAcademico.dat;
+option solver './cplex';
+solve;
