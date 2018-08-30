@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="page_view_width">240dp</dimen>
-    <dimen name="page_view_height">240dp</dimen>
-    <dimen name="title_fragment">18sp</dimen>
-</resources>
