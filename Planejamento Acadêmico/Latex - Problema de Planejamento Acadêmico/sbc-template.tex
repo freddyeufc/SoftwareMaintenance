@@ -6,13 +6,18 @@
 \usepackage{graphicx,url}
 
 \usepackage[brazil]{babel}   
-\usepackage[latin1]{inputenc}  
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\UseRawInputEncoding
+
+\usepackage{amsmath,mathtools}
+\usepackage{stmaryrd}
      
 \sloppy
 
-\title{Proposta de uma linearização para o\\ Problema Da Diversidade Máxima de Grupos}
+\title{Modelo de Programação Linear Inteira para o Problema de Planejamento Acadêmico}
 
-\author{Carlos V. D. Araujo\inst{1}, Tatiane F. Figueiredo\inst{2}}
+\author{Carlos V. D. Araujo\inst{1}}
 
 
 \address{Universidade Federal do Ceará -- Campus Russas (UFC)\\
@@ -25,11 +30,11 @@
 \maketitle
 
 \begin{abstract} 
-  This meta-paper present a linearization to the existing formulation of the maximally diverse grouping problem. Computational experiments performed on a series of random graphs as well as on several instances of the maximum diversity problem taken from the literature, shows that most of the time, the linearization is faster than the quadratic formulation, using the Simplex method to solve them.
+  Texto em ingles
 \end{abstract}
 
 \begin{resumo} 
-  Este meta-artigo apresenta uma linearização para uma formulação existente do problema da máxima diversidade de grupos. Experimentos computacionais realizados utilizando \textit{IBM ILOG CPLEX} em uma série de grafos aleatórios, bem como em várias instâncias do problema da máxima diversidade de grupos retiradas da literatura, mostram que grande parte das vezes a linearização tem melhor desempenho.
+  texto
 \end{resumo}
 
 \newpage
@@ -46,207 +51,8 @@ Várias são as aplicações do PMDG, como exemplo nós temos projetos de circuitos V
 
 Neste trabalho é apresentada uma formulação linearizada do modelo quadrático existente na literatura, juntamente com o comparativo entre o desempenho das formulações.
 
-
-\section{Formulações matemáticas}
-Existem duas variantes do PDMG. A mais conhecida é (PDMG1), onde todos os grupos são forçados a ter o mesmo número $k$ de elementos, tal que $k = n / m$. A segunda variação, (PDMG2) permite que os grupos tenham tamanhos variados. 
-
-Assim, o número $c_g$ de elementos em um grupo é dado pelo intervalo de $[a_g, b_g]$, onde $a_g \leq b_g$ para $g = 1, 2, ..., m$. Ambas as variantes podem ser modeladas como um problema de programação inteira. Considerando-se $x_{ig} (i = 1, 2, ..., n e g = 1, 2, ..., m)$ as variáveis binárias definidas de maneira que:
-
-{
-$$\mbox{$x_{ig}$} = 
-	\left \{ 
-		\begin{array}{ll}
-			1,\ $Se o elemento \textit{i} pertence ao grupo \textit{g}$ \ \\
-			0,\ $Caso contrário$
-		\end{array}
-	\right. $$
-}
-
-\subsection{Formulação quadrática}
-
-\begin{equation}
-	\max \quad \sum_{g=1}^{m} \sum_{i=1}^{n} \sum_{j = 1}^{n} d_{ij}x_{ig}x_{jg} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation}
-\textrm{Tal que \newline}
-\begin{equation}
-	\quad \sum_{g=1}^{m} x_{ig} = 1, \ \ i = 1, 2, \ldots, n, \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation} 
-\begin{equation}
-	\quad \sum_{i=1}^{n} x_{ig} \geq  a_{g}, \ \ g = 1, 2, \ldots, m, \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation}  
-\begin{equation}
-       \quad \sum_{i=1}^{n} x_{ig} \leq  b_{g}, \ \ g = 1, 2, \ldots, m \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation}
-\setcounter{equation}{0}
-Restrição (2) exige que cada elemento $i$ esteja em apenas um grupo. Restrições (3) e (4) garantem que cada grupo $g$ contenha ao menos $a_g$ e não mais que $b_g$.
-% Segunda formulação
-
-A linearização do modelo consiste na adição de uma variável que substitue o fator quadrático. Considerando-se $y_{ijg} (i = 1, 2, ..., n, j = 1, 2, ..., n e g = 1, 2, ..., m)$ as variáveis binárias definidas de maneira que:
-{
-$$\mbox{$y_{ijg}$} = 
-	\left \{ 
-		\begin{array}{ll}
-			1,\ $Se os elementos \textit{i} e \textit{j} pertencerem ao grupo \textit{g}$ \ \\
-			0,\ $Caso contrário$
-		\end{array}
-	\right. $$
-}
-\subsection{Formulação linear}
-
-\begin{equation}
-	\max \quad \sum_{g=1}^{m} \sum_{i=1}^{n} \sum_{j = 1}^{n} d_{ij}y_{ijg}  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation}
-\textrm{Tal que \newline}
-\begin{equation}
-	\quad \sum_{g=1}^{m} x_{ig} = 1, \ \ i = 1, 2, \ldots, n, \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation} 
-\begin{equation}
-	\quad \sum_{i=1}^{n} x_{ig} \geq  a_{g}, \ \ g = 1, 2, \ldots, m, \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation}  
-\begin{equation}
-       \quad \sum_{i=1}^{n} x_{ig} \leq  b_{g}, \ \ g = 1, 2, \ldots, m \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation}
-\begin{equation}
-	\quad x_{ig} + x_{jg} - 1 \leq y_{ijg}, \ \ g = 1, 2, \ldots, m; i\ e \ j = 1, 2, \ldots, n, \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation}  
-\begin{equation}
-	\quad \sum_{i = 1}^{n} \sum_{j = 1}^{n} y_{ijg} \geq (a_g - 1) x_{jg} \ \ g = 1, 2, \ldots, m, \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
-\end{equation}  
-\begin{equation}
-       \quad \sum_{i = i}^{n} \sum_{j = 1}^{n} y_{ijg} \leq (b_g - 1) x_{jg}, \ \ g = 1, 2, \ldots, m, \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
-\end{equation}  
-As restrições (2), (3) e (4) da formulação quadrática serão mantidas. A restrição (5) exige que a variável $y_{ijg}$ receba o valor 1 se, e somente se, as variávei $x_{ig}$ e $x_{jg}$ respectivamente forem diferentes de 0. Restrições (6) e (7) garantem que a quantidade de elementos selecionados para o grupo $g$ em relação a variável $y_{ijg}$ seja ao menos $a_g$ e no máximo $b_g$.
-
-\section{Problema da Diversidade Máxima de Grupos}
-Diversas abordagens heurísticas e metaheurísticas têm sido propostas para obter soluções de alta qualidade para o PDMG.
-
-Fan et al. (2011) abordaram o PDMG através de um algoritmo híbrido baseado em algoritmos genéticos. Esta abordagem mostrou-se satisfatória encontrando-se bons resultados para instâncias de tamanho máximo n = 240.
-
-Gallego et al. (2013) propuseram uma nova heurística utilizando mecanismos de busca, com base na metodologia busca tabu para o PDMG, incluindo uma estratégia de oscilação, que permitiu o cruzamento de caminhos viáveis de busca. Foram avaliados procedimentos de construção e de busca para configurar um procedimento de solução que quando comparado ao estado da arte para o MDGP. Extensos experimentos computacionais com médias e grandes instâncias foram apresentados para demonstrar as vantagens do método de solução que inclui estratégica de oscilação.
-
-Palubeckis et al. (2011) propuseram três heurísticas para o PDMG, sendo elas: Multistart simulated annealing (MSA), Hybrid steady-state genetic algorithm (HGA) e Variable Neighborhood search (VNS). O desempenho das heurísticas foi comparado computacionalmente através de dois grupos de instâncias: o primeiro, instâncias do Problema da Diversidade Máxima, caso particular do PDMG e o outro, com instâncias de até 2000 elementos. Dentre as três abordagens, a que se mostra mais eficiente é o HGA. 
-
-Uro?evi? (2014) desenvolveu uma heurística híbrida baseada em VNS onde o processo de busca utilizado para melhoria de soluções baseou-se em um algoritmo VND composto por duas vizinhanças. Os resultados apresentados mostram que a metodologia proposta é $0,5\%$ melhor que os resultados obtidos com o VNS clássico.
-
-Rodriguez et al. (2013) apresentam um algoritmo Artificial Bee Colony (ABC) que é uma metodologia baseada no comportamento alimentar das abelhas. A eficiência do novo algoritmo foi comprovada para instâncias de até 2000 elementos e, comparado aos seus antecessores, este algoritmo apresentou as melhores soluções até o presente momento.
-
-Diante da análise feita a partir de trabalhos anteriores, é notório o fato de que não são utilizadas abordagens exatas para solucionar o PDMG, uma vez que algoritmos aproximativos na maioria das vezes não conseguem encontrar a solução ótima mas, são considerávelmente mais rápidos para atingir resultados aceitáveis.
-
-\section{Resultados Computacionais}
-Nessa seção serão descritos os experimentos computacionais realizados para testar a eficiência das implementações de ambos os modelos utilizando o solver CPLEX Optimizer e a linguagem de programação C++. Toda computação foi feita em um Intel Core I5-4570 (3.20GHz) 4 threads com 14.6 GB RAM e sistema operacional Linux Mint 18 Cinnamon 64 bits.
-
-Os experimentos foram realizados sobre uma amostra de 240 das 480 instâncias disponibilizadas do problema. Este conjunto pertence á MDGPLIB, pode ser encontrado em http://www.optsicom.es/mdgp e é dividido em três subconjuntos: \\
-
-\textit{RanReal:} 160 instâncias compostas de matrizes $N$ x $N$ em que os valores das instâncias são números reais gerados usando uam distribuição uniforme \textit{U}$(0, 100)$. O número de elementos $n$, o número de grupos $m$ e os limites de cada grupo $a_g$ e $b_g$ são mostrados na 1. São 20 instâncias para cada combinação de parâmetros, 10 instâncias para o caso em que todos os grupos devem ter o mesmo tamanho e 10 instâncias de grupos de tamanhos diferentes. No primeiro caso, $a_g$ = $b_g$ = $n/m$. Já no segundo caso, os limites de cada grupo ($a_g$ e $b_g$) foram gerados aleatoriamente em um intervalo pré-definido. Com isso ${a_g}$ é gerado no intervalo [${a_g}^{min}$, ${a_g}^{max}$] e ${b_g}$ no intervalo [${b_g}^{min}$, ${b_g}^{max}$]. Esse conjunto de instâncias foi introduzido por (Fan et. al [8], 2011) com $n$ de 10 a 240. (Gallego et. al 2013) geraram instâncias maiores, de 480 e 960 elementos.
-
-\begin{table}[ht]
-\centering
-\caption{Sumário dos parâmetros usados para gerar as instâncias}
-\label{tab:exTable1}
-\begin{tabular}{|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
-\hline
-n  & m  & $a_g$ = $b_g$ & ${a_g}^{min}$ & ${a_g}^{max}$ & ${b_g}^{min}$ & ${b_g}^{max}$ \\ \hline
-10  & 2  & 5             & 3           & 5           & 5           & 7           \\ \hline
-12  & 4  & 3             & 2           & 3           & 3           & 5           \\ \hline
-30  & 5  & 6             & 5           & 6           & 6           & 10          \\ \hline
-60  & 6  & 10            & 7           & 10          & 10          & 14          \\ \hline
-120 & 10 & 12            & 8           & 12          & 12          & 16          \\ \hline
-240 & 12 & 20            & 15          & 20          & 20          & 25          \\ \hline
-480 & 20 & 24            & 18          & 24          & 24          & 30          \\ \hline
-960 & 24 & 40            & 32          & 40          & 40          & 48          \\ \hline
-\end{tabular}%
-\end{table} 
-
-\textit{RanInt}: Tem a mesma estrutura que \textit{RanReal} mas as distâncias são inteiros gerados por uma distribuição uniforme \textit{U}(0, 100).
-
-\textit{Geo}: Segue a mesma estrutura e tamanho dos outros dois conjuntos, entretanto, as distâncias são calculadas como distância Euclidiana entre pares de pontos com coordenadas aleatoriamente geradas no intervalo [$0$, $10$]. O número de coordenadas para cada instância é aleatoriamente gerado no intervalo entre 2 e 21. (Glover et. al, 1998) propôs esse gerador para o PDM.
-
-A serie de experimentos utiliza 240 instâncias, sendo elas 80 do tipo \textit{RanReal}, 80 \textit{RanInt} e 80 do tipo \textit{Geo}. As instâncias utilizadas tem o valor de $n$ variando de $10$ a $60$, cada subconjutnos é composto por $40$ instâncias onde os grupos tem tamanhos iguais e $40$ com os grupos de tamanhos diferentes.
-
-Os experimentos apresentados a seguir foram computados para cada instância a melhor solução obtida, o GAP, tempo e quantidade de nós gerados na árvore de solução. Em seguida foram calculados médias para cada combinação de $n$ com o tamanho do grupo.
-
-Todos os testes tiveram duas condição de parada, um tempo limite de 3600 segundos ($1$ hora) ou se o tamanho de árvore de solução ultrapassasse 26000 MB. A tabela 2 apresenta os resultados obtidos nas instâncias onde os grupos eram de tamanhos diferentes.
-\newpage
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-% \usepackage{graphicx}
-\begin{table}[ht]
-\centering
-\caption{Comparação entre modelos onde os grupos tem tamanhos diferentes}
-\label{tab:exTable2}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{p{1.5cm}|c|c|c|c|c|c|c|c|c}
-\hline
-\textbf{Tipo da instância} & \textbf{n} & \multicolumn{2}{c|}{\textbf{Resultado}} & \multicolumn{2}{c|}{\textbf{Tempo(s)}} & \multicolumn{2}{c|}{\textbf{GAP(\%)}} & \multicolumn{2}{c}{\textbf{Nós}} \\ \hline
-\textbf{} & \textbf{} & \textbf{Lin} & \textbf{Quad} & \textbf{Lin} & \textbf{Quad} & \textbf{Lin} & \textbf{Quad} & \textbf{Lin} & \textbf{Quad} \\ \hline
-\multirow{5}{*}{\textbf{RanReal}} & \textbf{10} & 1341,88 & 1341,88 & 0,164 & 0,115 & 0 & 0 & 0 & 0 \\ \cline{2-10} 
- & \textbf{12} & 1101,05 & 1101,05 & \textbf{8,48} & 11,786 & 0 & 0,005 & \textbf{6101,9} & 13199,4 \\ \cline{2-10} 
- & \textbf{30} & \textbf{5540,725} & 5538,995 & 3433,262 & 2698,067 & \textbf{0,376} & 1,517 & \textbf{272238,6} & 745300,5 \\ \cline{2-10} 
- & \textbf{60} & \textbf{17463,45} & 16992,62 & 3405,755 & 3398,155 & \textbf{0,599} & 3,755 & \textbf{7523,1} & 30022,7 \\ \hline
-\\ \hline
-\multirow{4}{*}{\textbf{RanInt}} & \textbf{10} & 1276,3 & 1276,3 & 0,171 & 0,103 & 0 & 0 & 0 & 0 \\ \cline{2-10} 
- & \textbf{12} & 1099,1 & 1099,1 & 10,236 & 9,411 & 0 & 0 & \textbf{7584,5} & 11174,6 \\ \cline{2-10} 
- & \textbf{30} & \textbf{5549,2} & 5469,2 & 3093,12 & 2648,63 & \textbf{0,376} & 1,536 & \textbf{277885} & 776620,7 \\ \cline{2-10} 
- & \textbf{60} & \textbf{17416,7} & 16823,8 & 3416,56 & 3434,03 & \textbf{0,606} & 3,742 & \textbf{7441,7} & 30231,1 \\ \hline
- \\ \hline
-\multirow{4}{*}{\textbf{Geo}} & \textbf{10} & 2806,243 & 2806,243 & 0,203 & 0,181 & 0 & 0 & \textbf{0} & 649,2 \\ \cline{2-10} 
- & \textbf{12} & 1766,5341 & 1766,53 & 77,713 & 49,186 & 0 & 0 & \textbf{83509,4} & 95633,7 \\ \cline{2-10} 
- & \textbf{30} & \textbf{11868,573} & 11779,081 & 3408,2 & 3266,496 & \textbf{0,406} & 0,435 & \textbf{278743,9} & 559089,1 \\ \cline{2-10} 
- & \textbf{60} & \textbf{45031,79} & 44802,4 & 3431,065 & 2916,298 & \textbf{0,318} & 0,326 & \textbf{10972,1} & 103772,1 \\ \hline
-\end{tabular}%
-}
-\end{table}
-
-Considerando o resultado obtido ao final da execução, vemos que de acordo com o aumento do valor de $n$ a linearização atinge em média resultados mais altos ao final da execução, em relação ao GAP, é fácil notar que com exceção dos casos onde o GAP de ambos é $0$, a linearização tem em média na maioria dos casos um valor consideravelmente menor. 
-
-Outro ponto importante a ser ressaltado está na relação do tempo com a quantidade de nós, é notório o fato de que o consumo de memória na execução do modelo quadrático é bem maior que na linearização, uma vez que boa parte das instâncias acabam sendo encerradas pelo CPLEX por atinigr o limite de tamanho máximo da árvore de solução, não pelo limite máximo de tempo.
-
-A tabela 3 apresenta a média de resultados para as instâncias onde $g$ = $n/m$, ou seja, os grupos tem tamanhos iguais.
-
-
-
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-% \usepackage{graphicx}
-\begin{table}[ht]
-\centering
-\caption{Comparação entre modelos onde os grupos tem tamanhos iguais}
-\label{tab:exTable3}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{p{1.5cm}|c|c|c|c|c|c|c|c|c}
-\hline
- \textbf{Tipo da instância} & \textbf{n} & \multicolumn{2}{c|}{\textbf{Resultado}} & \multicolumn{2}{c|}{\textbf{Tempo(s)}} & \multicolumn{2}{c|}{\textbf{GAP(\%)}} & \multicolumn{2}{c}{\textbf{Nós}} \\ \hline
- &  & \textbf{Lin} & \textbf{Quad} & \textbf{Lin} & \textbf{Quad} & \textbf{Lin} & \textbf{Quad} & \textbf{Lin} & \textbf{Quad} \\ \hline
-\multirow{4}{*}{\textbf{RanReal}} & \textbf{10} & 1284,619 & 1284,619 & \textbf{0,074} & 0,137 & 0 & 0 & 0 & 0 \\ \cline{2-10} 
- & \textbf{12} & 961,8449 & 961,8449 & \textbf{0,258} & 2,309 & 0 & 0 & \textbf{0} & 1216,8 \\ \cline{2-10} 
- & \textbf{30} & \textbf{5425,604} & 4751,483 & 3492,1725 & 2489,63725 & \textbf{0,034} & 1,156 & \textbf{265893,7} & 887810,6 \\ \cline{2-10} 
- & \textbf{60} & \textbf{17677,41} & 15970,25 & 3441,85 & 3399,0575 & \textbf{0,282} & 3,531 & \textbf{12780,6} & 43860,4 \\ \hline
- \\ \hline
-\multirow{4}{*}{\textbf{RanInt}} & \textbf{10} & 1224,5 & 1224,5 & \textbf{0,081} & 0,137 & 0 & 0 & 0 & 0 \\ \cline{2-10} 
- & \textbf{12} & 954,2 & 954,2 & 0,273 & 2 & 0 & 0 & \textbf{0,9} & 900,7 \\ \cline{2-10} 
- & \textbf{30} & \textbf{5403,1} & 5256,2 & 3122,97 & 3071,24 & \textbf{0,044} & 1,124 & \textbf{279562,2} & 960694,2 \\ \cline{2-10} 
- & \textbf{60} & \textbf{17547,6} & 16531,5 & 3438,87 & 3423,52 & \textbf{0,293} & 3,306 & \textbf{12558,3} & 42750,6 \\ \hline
- \\ \hline
-\multirow{4}{*}{\textbf{Geo}} & \textbf{10} & 2624,394 & 2624,394 & \textbf{0,102} & 0,128 & 0 & 0 & \textbf{0} & 493 \\ \cline{2-10} 
- & \textbf{12} & 1541,0195 & 1541,0195 & \textbf{0,382} & 10,057 & 0 & 0 & \textbf{18,5} & 11416,4 \\ \cline{2-10} 
- & \textbf{30} & \textbf{11356,95} & 11329,80 & 3378,52 & 3238,60 & \textbf{0,043} & 0,230 & \textbf{383867,8} & 571522,1 \\ \cline{2-10} 
- & \textbf{60} & 42637,26 & 42639,45 & 3438,32 & 2888,26 & \textbf{0,109} & 0,137 & \textbf{18420,7} & 105770,9 \\ \hline
-\end{tabular}%
-}
-\end{table}
-
-Considerando os resultados obtidos com as intâncias de tamanhos iguais, podemos assumir que, para as que são do tipo \textit{RanReal} e \textit{RanInt} a linearização obteve uma média de resultados consideravelmente maiores ao final da execução. O modelo quadrático, nas instâncias onde $n$ é menor, ou igual a 12 levaram mais tempo para atingir a solução ótima. Já nas instâncias maiores, o GAP da média das soluções é até 34 vezes mais alto que o da modelagem com função objetivo linear.
-
-Já nas instâncias do tipo \textit{Geo} é baixíssima a diferença entre os resultados obtidos, o mesmo vale pro GAP, pois ambas as modelagens ficam próximas de atingir o valor ótimo global.
-
-A maior diferença apresentada nas tabelas 2 e 3 se dá pelo fato da quantidade de nós gerados, em todos os casos a média de nós gerados pelo modelo quadrático é maior que a quantidade de nós gerados pelo modelo linearizado e a média de tempo para as instâncias maiores é menor, assim é possível assumir que solucionar as instâncias utilizando o modelo quadrático demanda bem mais memória.
-
-\section{conclusões e sugestões para trabalhos futuros} 
-Neste trabalho foi apresentado um modelo linearizado para o PDMG. Além disso, foi feito um comparativo de desempenho entre ambas as modelagens, levando em comparação diversos fatores, dentre eles o resultado obtido, o GAP, tempo de resolução e a quantidade de nós gerados. Foi mostrado que a linearização na maioria dos casos obtém em média resutados mais próximos do ótimo global, um valor de GAP mais baixo, gera menos nós na árvore e com isso consome menos memória durante a execução.
-
-Como trabalhos futuros propõe-se a implementação de uma relaxação lagrangeana e maneiras de aumentar o desempenho de resolução do modelo. 
-
-
+\input{textual/4-modelo}
+    
 \bibliographystyle{sbc}
 \bibliography{sbc-template}
 

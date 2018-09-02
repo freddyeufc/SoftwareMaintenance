@@ -1,0 +1,123 @@
+\section{Modelo de Programação Linear Inteira}
+\label{modelo-pli}
+
+
+É necessário um modelo matemático que faça a alocação dos \textbf{Professores} da universidade baseado em entradas que informem os \textbf{Dias (Combos)} que ele pode trabalhar e quais \textbf{Disciplinas} ele está apto a ministrar. Deve-se analisar a capacidade das \textbf{Salas} e as turmas que poderão ser alocadas nesta sala. Essa formulação visa maximizar a satisfação do professor com relação as disciplinas que ele ministrará nos dias selecionados.
+
+\subsection{Conjuntos} \label{conjuntos}
+\begin{itemize}
+ \item \textbf{P}: Conjunto de professores da universidade
+ \item \textbf{H}: Conjunto de horários de funcionamento da universidade
+ \item \textbf{C}: Conjunto de combos
+ \item \textbf{S}: Conjunto de salas da universidade
+ \item \textbf{D}: Conjunto de disciplinas
+ \item \textbf{E}: Conjunto de Semestres
+ \item \textbf{R}: Conjunto de Cursos
+\end{itemize}
+
+\subsection{Variáveis de Decisão} \label{variaveis}
+\begin{align}
+X_{p, d, c, h, s} = 
+\begin{cases}
+ 1, & 
+ \begin{multlined}[t]
+	\text{se o professor $p$ vai dar a disciplina $d$ no combo $c$, } \\[-1.5ex] 
+	\text{horário $h$ e sala $s$,}
+ \end{multlined} \\
+ 0, & \text{caso contrário.}
+\end{cases}
+\end{align}
+  
+\subsection{Funções de Entrada} \label{entrada}
+\begin{itemize}
+\item $MINH(p)$: Mínimo de créditos do professor $p$;
+\item $MAXH(p)$: Máximo de créditos do professor $p$;
+\item $NC(d)$: Número de créditos da Disciplina $d$;
+\item $Z_{p, d, c}$: É o valor de preferências do professor $p$ em dar a disciplina $d$ nos dias do combo $c$.
+\item $SEM(d, e, r)$: 1, se a disciplina $d$ pertence ao curso $r$ no semestre $e$. 0, caso contrário.
+\item $TSalas$: Quantidade total de salas da universidade.
+\item $CAP(s)$: Capacidade de alunos na sala $s$.
+\item $TamTurma(d)$: Tamanho da turma de uma determinada disciplina.
+\item $SOB(c_1, c_2)$: 1, se o combo $c_1$ tem algum dia sobreposto com o combo $c_2$. 0, caso contrário.
+\item $SOBH(h_1, h_2)$: 1, se o horário $h_1$ sobrepõe o horário $h_2$. 0, caso contrário.
+\item $COMP(c, d)$: 1, se o combo $c$ é compatível, em quantidade de dias, com a disciplina $d$. 0, caso contrário.
+\item $COMPHC(c, h)$: 1, se o combo $c$ é compatível, em intervalo de horas, com o horário $d$. 0, caso contrário.
+\end{itemize}
+
+
+\subsection{Modelo} \label{modelo}
+A Função objetivo busca maximizar a preferência global dos professores.
+\begin{align*}
+	\max \sum_{p \in P} \sum_{d \in D} \sum_{c \in C} \sum_{h \in H} \sum_{s \in S} X_{p, d, c, h, s} Z_{p, d, c}
+\end{align*}
+
+\setcounter{equation}{0}
+A restrição \ref{eq:1} limita a quantidade mínima de créditos de cada professor.
+\begin{align}
+	\sum_{d \in D} \sum_{c \in C} \sum_{h \in H} \sum_{s \in S} X_{p, d, c, h, s} * NC(d) \ \geq \ MINH(p), & \ \ \ \ \forall p \in P \label{eq:1}
+\end{align}
+
+A restrição \ref{eq:2} limita a quantidade máxima de créditos de cada professor.
+\begin{align}
+	\sum_{d \in D} \sum_{c \in C} \sum_{h \in H} \sum_{s \in S} X_{p, d, c, h, s} * NC(d) \ \leq \ MAXH(p), & \ \ \ \ \forall p \in P \label{eq:2}
+\end{align}
+
+A restrição \ref{eq:3} limita o Professor a estar em mais de uma sala ao mesmo tempo.
+\begin{align}
+	\sum_{d \in D} \sum_{s \in S} X_{p, d, c, h, s} \ \leq \ 1, & \ \ \ \ \forall p \in P; c \in C, h \in H \label{eq:3}
+\end{align}
+
+A restrição \ref{eq:4} limita que duas ou mais disciplinas do mesmo semestre estejam no mesmo horário. Contabilizando todas as disciplinas em um horário e combo específico, o parâmetro $SEM_{d, e, r}$ vai contabilizar as disciplinas que são do mesmo semestre e curso, esse total deve ser menor ou igual a 1.
+\begin{align}
+		\sum_{d \in D} \sum_{p \in P} \sum_{s \in S} X_{p, d, c, h, s} * SEM(d,r,e)\ \leq \ 1, & \ \ \ \ \forall e \in E; c \in C, h \in H, r \in R \label{eq:4}
+\end{align}
+
+A restrição \ref{eq:5} impede a alocação de uma mesma sala para mais de uma turma em um mesmo horário.
+\begin{align}
+	\sum_{p \in P} \sum_{d \in D} X_{p, d, c, h, s} \ \leq \ 1, & \ \ \ \ \forall s \in S; c \in C, h \in H \label{eq:5}
+\end{align}
+
+A restrição \ref{eq:7} garante que um professor só dê uma disciplina se ele estiver apto para dar ela naquele dia (Sempre que o $Z$ for 0, o $X$ será obrigado a zerar também).
+\begin{align}
+	X_{p, d, c, h, s} \ \ \leq \ Z_{p, d, c}, \ \ \ \ \forall p \in P; c \in C; d \in D; h \in H; s \in S,  \label{eq:7}
+\end{align}
+
+A restrição \ref{eq:8} garante a quantidade de salas alocadas em determinado momento não ultrapasse o total de salas existentes na universidade.
+\begin{align}
+	\sum_{p \in P} \sum_{s \in S} \sum_{d \in D} X_{p, d, c, h, s} \ \ \leq \ TSalas, \ \ \ \ \forall h \in H; c \in C,  \label{eq:8}
+\end{align}
+
+A restrição \ref{eq:9} garante que cada disciplina seja dada.
+\begin{align}
+	\sum_{p \in P} \sum_{h \in H} \sum_{s \in S} \sum_{c \in C} X_{p, d, c, h, s} \ \ = \ 1, \ \ \ \ \forall d \in D, \label{eq:9}
+\end{align}
+
+A restrição \ref{eq:10} garante que um combo não seja alocado para um horário que não seja compatível. Ex: um combo de 3 dias, SEG-QUA-SEX de 2 horas por dia não pode, por exemplo, ser alocado em nenhum horário de 08-11. Só pode estar em horários de 08-10, 10-12, 13:30-15:30 etc. 
+\begin{align}
+	X_{p, d, c, h, s} \ \ \leq \ COMPHC(c, h), \ \ \ \ \forall h \in H, c \in C, p \in P, s \in S, d \in D \label{eq:10}
+\end{align}
+
+A restrição \ref{eq:11} faz com que combos com dias sobrepostos não possam ser alocados a mesma sala no mesmo horário.
+
+\begin{align}
+    \sum_{p \in P} \sum_{d \in D} (X_{p,d,c_1,h,s} + X_{p,d,c_2,h,s}) * SOB(c_1, c_2) \ \ \leq \ 1, \ \ \ \ \forall s \in S, h \in H, c_1 \in C, c_2 \in C \label{eq:11}
+\end{align}
+
+A restrição \ref{eq:12} faz com que combos com dias sobrepostos não possam ser alocados a mesma sala em horários sobrepostos. Ex: Se o combo tem dias sobrepostos, não podemos alocar a sala nos horários de 08-10 e 08-11.
+
+\begin{align}
+    \sum_{p \in P} \sum_{d \in D} (X_{p,d,c_1,h_1,s} + X_{p,d,c_2,h_2,s}) * SOB(c_1, c_2) * SOBH(h_1, h_2) \ \ \leq \ 1, \ \ \ \ 
+    \begin{multlined}[t] \forall s \in S, h_1 \in H, h_2 \in H, \\
+    c_1 \in C, c_2 \in C
+    \end{multlined}\label{eq:12}
+\end{align}
+
+A restrição \ref{eq:13} Só permite alocar uma turma de um disciplina para uma sala onde caibam todos os alunos.
+
+\begin{align}
+    X_{p,d,c,h,s} * (CAP(s) - TamTurma(d)) \ \geq \ 0, \ \ \ \ \forall s \in S, d \in D, p \in P, c \in C, h \in H \label{eq:13}
+\end{align}
+
+\end{document}
+
+
