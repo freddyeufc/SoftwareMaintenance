@@ -6,12 +6,17 @@ set DISCI := FUP1 FUP2 POO ARQ1 ARQ2;
 set SALA:= Sala01 Sala02 Sala04; 		# SALA - S
 
 set COMBO:= CB01 CB02 CB03 CB04; 	# COMBO - B
-
+# CB1 - SEG-QUA-SEX
+# CB2 - TER-QUI
+# CB3 - SEG 
+# CB4 - SEG
 set HORARIO:= h0800_1000 h1000_1200 h1330_1530 h1530_1730 h0800_1100; 	# HORARIO - H
 
 set SEMESTRE := S1 S2;
 
 set CURSO := CC SOFT;
+
+set TURNO := MANHA TARDE;
 
 # A partir daqui
 
@@ -20,19 +25,27 @@ Prof01 4 20
 Prof02 4 20;
 
 param Z :=
-[Prof01, *, *](tr): 
+[Prof01, *, *, *](tr): 
             FUP1 FUP2 POO ARQ1 ARQ2:=
-CB01     100 100 0 0 0
-CB02     0 0 100 0 0
-CB03     0 0 0 100 0
-CB04     0 0 100 0 0
+CB01 MANHA 10 10 0 0 0
+CB01 TARDE 10 10 0 0 0
+CB02 MANHA 0 0 10 0 0
+CB02 TARDE 0 0 10 0 0
+CB03 MANHA 0 0 0 0 10
+CB03 TARDE 0 0 0 0 0
+CB04 MANHA 0 0 10 0 0
+CB04 TARDE 0 0 0 0 0
 
-[Prof02, *, *](tr):
+[Prof02, *, *, *](tr):
             FUP1 FUP2 POO ARQ1 ARQ2:=
-CB01         100 100 0 0 0 
-CB02        0 0 0 0 0
-CB03        0 0 0 0 100
-CB04        0 0 100 0 0;
+CB01 MANHA 0 0 0 0 0
+CB01 TARDE 10 10 0 0 0
+CB02 MANHA 0 0 0 0 0
+CB02 TARDE 0 0 0 0 0
+CB03 MANHA 0 0 0 10 10
+CB03 TARDE 0 0 0 0 0
+CB04 MANHA 0 0 0 0 0
+CB04 TARDE 0 0 10 0 0;
 
 param: Nc:=
 FUP1 6
@@ -63,7 +76,7 @@ param Tsalas := 6;
 param: Cap := 
 Sala01 50
 Sala02 50
-Sala04 40;
+Sala04 50;
 
 param TamTurma := 
 FUP1 50
@@ -71,6 +84,12 @@ FUP2 50
 POO 40
 ARQ1 50
 ARQ2 50;
+
+param CompTH:
+      h0800_1000 h1000_1200 h1330_1530 h1530_1730 h0800_1100 := 
+MANHA   1 1 0 0 1
+TARDE   0 0 1 1 0;
+
 
 param CompHC:
             h0800_1000 h1000_1200 h1330_1530 h1530_1730 h0800_1100 := 

@@ -6,10 +6,11 @@ set COMBO; 	# COMBO - C
 set HORARIO; 	# HORARIO - H
 set SEMESTRE; # SEMESTRE - E
 set CURSO; # CURSOS - R
+set TURNO; # TURNOS - T
 
 param MINHp {PROF} >0;
 param MAXHp {PROF} >0;
-param Z {PROF,DISCI,COMBO} >= 0;
+param Z {PROF,DISCI,COMBO, TURNO} >= 0;
 param Nc {DISCI} > 0;
 param Sem{DISCI, SEMESTRE, CURSO} >= 0;
 param Tsalas integer;
@@ -19,11 +20,12 @@ param Sob{COMBO, COMBO} >= 0;
 param Sobh{HORARIO, HORARIO} >= 0;
 param Comp{COMBO, DISCI} >= 0;
 param CompHC{COMBO, HORARIO}>=0;
+param CompTH{TURNO, HORARIO} >=0;
 
 var X {PROF, DISCI, COMBO, HORARIO, SALA} binary; 
 
 #FUNÇÃO OBJETIVO 
-maximize f:sum {p in PROF, d in  DISCI, c in COMBO, h in HORARIO,  s in SALA} X[p,d,c,h,s] * Z[p,d,c];
+maximize f:sum {p in PROF, d in  DISCI, c in COMBO, t in TURNO, h in HORARIO, s in SALA} X[p,d,c,h,s] * Z[p,d,c,t];
 
 #RESTRIÇOES 
 # Cada professor tem uma carga horária mínima
@@ -48,7 +50,7 @@ sum {d in DISCI, p in PROF} X[p,d,c,h,s]  <= 1;
 
 # Um professor não pode ser alocado para um dia que ele disse não poder
 subject to ProfessorCombo {s in SALA, c in COMBO, h in HORARIO, d in DISCI, p in PROF}:
-X[p,d,c,h,s]  <= Z[p,d,c];
+X[p,d,c,h,s] <= sum {t in TURNO} Z[p,d,c,t] * CompTH[t, h];
 
 # Total de salas alocadas tem que ser menor que a quantidade de salas da universidade
 subject to SalaHorarioTotal {c in COMBO, h in HORARIO}:
