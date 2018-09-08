@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.InitialActivity">
+    tools:context=".activities.InitialActivity"
+    android:background="@color/colorBackgroundOrange">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,21 +17,27 @@
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="250dp"
-            android:layout_height="90dp"
-            android:src="@android:drawable/presence_video_online" />
-
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPagerInitialId"
             android:layout_width="@dimen/page_view_width"
-            android:layout_height="@dimen/page_view_height" />
+            android:layout_height="@dimen/page_view_height"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicatorInitialId"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="30dp" />
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:id="@+id/LoginButtonId"
+            android:layout_width="@dimen/page_view_width"
             android:layout_height="wrap_content"
-            android:text="Skip" />
+            android:background="@drawable/rounded_button"
+            android:text="@string/login_button"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold"
+            android:textColor="@color/colorGrey" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

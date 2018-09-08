@@ -16,16 +16,17 @@ import com.carlos.manutencao.ifome.R;
  */
 public class InitialFragment extends Fragment {
 
-    private ImageView imageView;
-    private TextView textView;
+    private ImageView imageViewLogo;
+    private TextView textViewTitle, textViewDescription;
     private int image;
-    private String title;
+    private String title, description;
 
-    public static Fragment newInstance(int image, String title){
+    public static Fragment newInstance(int image, String title, String description){
         InitialFragment initialFragment = new InitialFragment();
         Bundle args = new Bundle();
         args.putInt("image", image);
         args.putString("title", title);
+        args.putString("description", description);
 
         initialFragment.setArguments(args);
 
@@ -41,14 +42,17 @@ public class InitialFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         image = getArguments().getInt("image");
         title = getArguments().getString("title");
+        description = getArguments().getString("description");
 
         View v = inflater.inflate(R.layout.fragment_initial, container, false);
 
-        imageView = v.findViewById(R.id.imageViewIconInitial);
-        textView = v.findViewById(R.id.textViewInitial);
+        imageViewLogo = v.findViewById(R.id.logoFragmentInitialId);
+        textViewTitle = v.findViewById(R.id.titleFragmentInitialId);
+        textViewDescription = v.findViewById(R.id.descriptionFragmentInitialId);
 
-        imageView.setImageResource(image);
-        textView.setText(title);
+        imageViewLogo.setImageResource(image);
+        textViewTitle.setText(title);
+        textViewDescription.setText(description);
 
         return v;
     }

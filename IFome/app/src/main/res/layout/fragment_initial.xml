@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.InitialFragment">
+    tools:context=".fragments.InitialFragment"
+    android:background="@color/colorBackgroundOrangeLighter">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -15,15 +16,28 @@
         android:layout_gravity="center">
 
         <ImageView
-            android:id="@+id/imageViewIconInitial"
-            android:layout_width="140dp"
-            android:layout_height="90dp" />
+            android:id="@+id/logoFragmentInitialId"
+            android:layout_width="@dimen/logo_width"
+            android:layout_height="@dimen/logo_height" />
+
         <TextView
-            android:id="@+id/textViewInitial"
+            android:id="@+id/titleFragmentInitialId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="@dimen/title_fragment"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/title_fragment" />
+
+        <TextView
+            android:id="@+id/descriptionFragmentInitialId"
+            android:layout_width="@dimen/page_view_width"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/description_fragment" />
     </LinearLayout>
 </FrameLayout>
