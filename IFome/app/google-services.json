@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "686174418781",
+    "firebase_url": "https://ifome-4b49f.firebaseio.com",
+    "project_id": "ifome-4b49f",
+    "storage_bucket": "ifome-4b49f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686174418781:android:347e6c714d76d74b",
+        "android_client_info": {
+          "package_name": "com.carlos.manutencao.ifome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686174418781-peeqml7nl1uj1tubrcmc7ak1lg0crg5h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.carlos.manutencao.ifome",
+            "certificate_hash": "e8a1ed0de6fccd1f3b2716b76731d64985aaaa47"
+          }
+        },
+        {
+          "client_id": "686174418781-lfs1k8ibfmi7nmer7jv7j4m08almjhpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Phkcwc67OZgS-lELGVAFQGh1749lics"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686174418781-lfs1k8ibfmi7nmer7jv7j4m08almjhpr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

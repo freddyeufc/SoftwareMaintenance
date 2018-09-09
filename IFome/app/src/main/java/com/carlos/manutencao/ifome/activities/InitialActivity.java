@@ -21,15 +21,24 @@ public class InitialActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private CircleIndicator indicator;
+    private Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //View decorView = getWindow().getDecorView();
-        //decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
 
+        loginButton = findViewById(R.id.loginButtonId);
         initViewPager();
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+            }
+        });
+
 
     }
 

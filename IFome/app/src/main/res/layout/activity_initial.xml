@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.InitialActivity"
-    android:background="@color/colorBackgroundOrange">
+    android:background="@drawable/background_laranja_test">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_marginBottom="30dp" />
 
         <Button
-            android:id="@+id/LoginButtonId"
+            android:id="@+id/loginButtonId"
             android:layout_width="@dimen/page_view_width"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button"

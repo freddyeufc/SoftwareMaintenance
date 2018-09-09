@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">IFome Russas</string>
-    <string name="login_button">FAZER LOGIN!</string>
+    <string name="login_button">COMEÇAR A USAR!</string>
+    <string name="facebook_sing_up">Sing up with Facebook</string>
+    <string name="frame_login_button">ENTRAR</string>
+
+    <string name="facebook_app_id">236684207004769</string>
+    <string name="fb_login_protocol_scheme">fb236684207004769</string>
 </resources>
