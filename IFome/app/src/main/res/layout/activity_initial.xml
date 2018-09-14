@@ -39,7 +39,7 @@
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="@string/escolha_entre_as_opcoes"
+        android:text="@string/choose_between_options"
         android:textAllCaps="true"
         android:textSize="25sp"
         android:textStyle="bold">
@@ -57,7 +57,7 @@
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
         android:background="@drawable/rounded_button"
-        android:text="@string/escolher_cidade"
+        android:text="@string/choose_city"
         />
 
     <Button
@@ -70,7 +70,7 @@
         android:layout_marginTop="8dp"
         android:layout_gravity="center"
         android:background="@drawable/rounded_button"
-        android:text="@string/usar_localizacao_atual" />
+        android:text="@string/use_actual_location" />
 
 
 </LinearLayout>

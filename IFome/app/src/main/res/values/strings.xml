@@ -6,7 +6,10 @@
 
     <string name="facebook_app_id">236684207004769</string>
     <string name="fb_login_protocol_scheme">fb236684207004769</string>
-    <string name="escolha_entre_as_opcoes">Escolha entre as opções</string>
-    <string name="escolher_cidade">Escolher Cidade</string>
-    <string name="usar_localizacao_atual">Usar Localização Atual</string>
+    <string name="choose_between_options">Escolha entre as opções</string>
+    <string name="choose_city">Escolher Cidade</string>
+    <string name="use_actual_location">Usar Localização Atual</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="login">Entrar</string>
 </resources>
