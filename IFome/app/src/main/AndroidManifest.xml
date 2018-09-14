@@ -51,7 +51,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.InitialActivity"></activity>
+        <activity android:name=".activities.InitialActivity" />
+        <activity android:name=".activities.FoodDetailsActivity"></activity>
     </application>
 
 </manifest>
