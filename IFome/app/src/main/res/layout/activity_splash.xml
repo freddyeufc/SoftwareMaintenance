@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SplashActivity"
+    android:background="@drawable/background_laranja_test">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPagerInitialId"
+            android:layout_width="@dimen/page_view_width"
+            android:layout_height="@dimen/page_view_height"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicatorInitialId"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="30dp" />
+
+        <Button
+            android:id="@+id/loginButtonId"
+            android:layout_width="@dimen/page_view_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:text="@string/login_button"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold"
+            android:textColor="@color/colorGrey" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
