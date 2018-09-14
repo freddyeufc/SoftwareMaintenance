@@ -10,4 +10,6 @@
     <dimen name="description_fragment">20sp</dimen>
     
     <dimen name="button_text_size">18sp</dimen>
+    <dimen name="button_initial_activity_width">380dp</dimen>
+    <dimen name="button_initial_activity_height">50dp</dimen>
 </resources>
