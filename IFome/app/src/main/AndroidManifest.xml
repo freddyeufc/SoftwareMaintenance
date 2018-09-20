@@ -15,20 +15,11 @@
             android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.InitialNoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activities.LoginActivity"
             android:theme="@style/AppTheme.InitialNoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
@@ -52,7 +43,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.InitialActivity" />
-        <activity android:name=".activities.FoodDetailsActivity"></activity>
+        <activity
+            android:name=".activities.FoodDetailsActivity"
+            android:label="Detalhes da Comida">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

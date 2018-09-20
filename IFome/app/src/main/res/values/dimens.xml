@@ -12,4 +12,8 @@
     <dimen name="button_text_size">18sp</dimen>
     <dimen name="button_initial_activity_width">380dp</dimen>
     <dimen name="button_initial_activity_height">50dp</dimen>
+    <dimen name="layout_width_button_detail_food_activity">255dp</dimen>
+    <dimen name="layout_height_button_details_food_activity">50dp</dimen>
+    <dimen name="layout_width_icons_details_food_activity">50dp</dimen>
+    <dimen name="layout_height_icons_details_food_activity">50dp</dimen>
 </resources>

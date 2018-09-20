@@ -12,4 +12,9 @@
     <string name="email">Email</string>
     <string name="password">Senha</string>
     <string name="login">Entrar</string>
+    <string name="food_name">Nome da Comida</string>
+    <string name="description"></string>
+    <string name="see_additionals">Ver Adicionais</string>
+    <string name="add_observations">Adicionar Observações</string>
+    <string name="continue_button">Continuar Compra</string>
 </resources>

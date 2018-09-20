@@ -1,16 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_laranja_test"
     tools:context=".activities.FoodDetailsActivity">
 
+    <View
+        android:id="@+id/viewDetailsFoodId"
+        android:layout_width="363dp"
+        android:layout_height="182dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:background="#f57d51"
+        android:elevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageFoodId"
+        android:layout_width="76dp"
+        android:layout_height="82dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:elevation="2dp"
+        app:layout_constraintStart_toStartOf="@+id/viewDetailsFoodId"
+        app:layout_constraintTop_toTopOf="@+id/viewDetailsFoodId"
+        app:srcCompat="@drawable/hamburgui" />
+
+    <TextView
+        android:id="@+id/foodNameId"
+        android:layout_width="235dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="24dp"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:text="@string/food_name"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/viewDetailsFoodId"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toEndOf="@+id/imageFoodId"
+        app:layout_constraintTop_toTopOf="@+id/viewDetailsFoodId" />
+
+    <TextView
+        android:id="@+id/descriptionFoodId"
+        android:layout_width="343dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
+        android:elevation="2dp"
+        android:text="@string/description"
+        app:layout_constraintStart_toStartOf="@+id/viewDetailsFoodId"
+        app:layout_constraintTop_toBottomOf="@+id/foodNameId" />
+
+    <Button
+        android:id="@+id/buttonSeeAdditionalsId"
+        android:layout_width="@dimen/layout_width_button_detail_food_activity"
+        android:layout_height="@dimen/layout_height_button_details_food_activity"
+        android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/see_additionals"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewDetailsFoodId" />
 
 
+    <ImageView
+        android:id="@+id/buttonAddId"
+        android:layout_width="@dimen/layout_width_icons_details_food_activity"
+        android:layout_height="@dimen/button_initial_activity_height"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_add_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSeeAdditionalsId" />
 
+    <ImageView
+        android:id="@+id/buttonRemoveId"
+        android:layout_width="@dimen/layout_width_icons_details_food_activity"
+        android:layout_height="@dimen/button_initial_activity_height"
+        android:layout_marginEnd="116dp"
+        android:layout_marginRight="116dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_remove_circle"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAddId"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSeeAdditionalsId" />
 
+    <TextView
+        android:id="@+id/quantityId"
+        android:layout_width="50dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="1"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAddId"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toEndOf="@+id/buttonRemoveId"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSeeAdditionalsId" />
 
+    <Button
+        android:id="@+id/buttonAddObservationsId"
+        android:layout_width="@dimen/layout_width_button_detail_food_activity"
+        android:layout_height="@dimen/button_initial_activity_height"
+        android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/add_observations"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantityId" />
 
+    <Button
+        android:id="@+id/buttonContinueId"
+        android:layout_width="359dp"
+        android:layout_height="54dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/continue_button"
+        android:textSize="@dimen/button_text_size"
+        android:elevation="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddObservationsId" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/buttonQuitId"
+        android:layout_width="36dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:elevation="2dp"
+        android:src="@drawable/ic_add_shopping"
+        app:layout_constraintEnd_toEndOf="@+id/buttonContinueId"
+        app:layout_constraintTop_toTopOf="@+id/buttonContinueId" />
+
+</android.support.constraint.ConstraintLayout>
