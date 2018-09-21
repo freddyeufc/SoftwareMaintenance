@@ -27,8 +27,18 @@
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicatorInitialId"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="30dp" />
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/registerButtonId"
+            android:layout_width="@dimen/page_view_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:text="@string/register_now_button"
+            android:textColor="@color/colorGrey"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/loginButtonId"
@@ -36,8 +46,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button"
             android:text="@string/login_button"
+            android:textColor="@color/colorGrey"
             android:textSize="@dimen/button_text_size"
-            android:textStyle="bold"
-            android:textColor="@color/colorGrey" />
+            android:layout_marginTop="10dp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

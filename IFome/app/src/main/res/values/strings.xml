@@ -1,20 +1,27 @@
 <resources>
     <string name="app_name">IFome Russas</string>
-    <string name="login_button">COMEÇAR A USAR!</string>
+    <string name="login_button">JÁ É CADASTRADO? CLIQUE AQUI!</string>
     <string name="facebook_sing_up">Sing up with Facebook</string>
     <string name="frame_login_button">ENTRAR</string>
 
-    <string name="facebook_app_id">236684207004769</string>
-    <string name="fb_login_protocol_scheme">fb236684207004769</string>
+    <!--<string name="facebook_app_id">236684207004769</string>
+    <string name="fb_login_protocol_scheme">fb236684207004769</string> -->
     <string name="choose_between_options">Escolha entre as opções</string>
     <string name="choose_city">Escolher Cidade</string>
     <string name="use_actual_location">Usar Localização Atual</string>
     <string name="email">Email</string>
     <string name="password">Senha</string>
+    <string name="user_name">Nome</string>
     <string name="login">Entrar</string>
+<<<<<<< HEAD
     <string name="food_name">Nome da Comida</string>
     <string name="description"></string>
     <string name="see_additionals">Ver Adicionais</string>
     <string name="add_observations">Adicionar Observações</string>
     <string name="continue_button">Continuar Compra</string>
+=======
+    <string name="register_now_button">CADASTRE-SE AGORA!</string>
+
+
+>>>>>>> tela_principal
 </resources>
