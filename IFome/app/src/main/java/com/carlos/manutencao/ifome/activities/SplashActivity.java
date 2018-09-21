@@ -22,6 +22,7 @@ public class SplashActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private CircleIndicator indicator;
     private Button loginButton;
+    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,16 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         loginButton = findViewById(R.id.loginButtonId);
+        registerButton = findViewById(R.id.registerButtonId);
         initViewPager();
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent login = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(login);
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +48,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(login);
             }
         });
-
 
     }
 
