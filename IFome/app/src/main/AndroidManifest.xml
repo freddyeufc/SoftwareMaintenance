@@ -22,7 +22,6 @@
             android:theme="@style/AppTheme.InitialNoActionBar">
         </activity>
         <activity android:name=".activities.InitialActivity" />
-        <activity android:name=".activities.FoodDetailsActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.RegisterActivity"
             android:theme="@style/AppTheme.InitialNoActionBar">
@@ -32,8 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".activities.InitialActivity" />
         <activity
             android:name=".activities.FoodDetailsActivity"
             android:label="Detalhes da Comida">
@@ -44,8 +41,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-=======
->>>>>>> tela_principal
-    </application>
+</application>
 
 </manifest>

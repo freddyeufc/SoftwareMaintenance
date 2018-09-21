@@ -13,15 +13,11 @@
     <string name="password">Senha</string>
     <string name="user_name">Nome</string>
     <string name="login">Entrar</string>
-<<<<<<< HEAD
     <string name="food_name">Nome da Comida</string>
     <string name="description"></string>
     <string name="see_additionals">Ver Adicionais</string>
     <string name="add_observations">Adicionar Observações</string>
     <string name="continue_button">Continuar Compra</string>
-=======
     <string name="register_now_button">CADASTRE-SE AGORA!</string>
 
-
->>>>>>> tela_principal
 </resources>
