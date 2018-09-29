@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.LoginActivity"
+    tools:context=".activities.RegisterActivity"
     android:background="@drawable/background_laranja_test">
 
     <TextView
@@ -28,7 +28,24 @@
         android:background="@color/colorBackgroundOrange" />
 
     <EditText
-        android:id="@+id/editTextLoginId"
+        android:id="@+id/editTextNameRegisterId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:fadingEdge="none"
+        android:hint="@string/user_name"
+        android:inputType="textEmailAddress"
+        android:padding="17dp"
+        android:singleLine="false"
+        android:textColorHighlight="@color/white"
+        android:textColorHint="@color/white"
+        android:textColorLink="@color/white" />
+
+    <EditText
+        android:id="@+id/editTextLoginRegisterId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -45,7 +62,7 @@
         android:textColorLink="@color/white" />
 
     <EditText
-        android:id="@+id/editTextPasswordId"
+        android:id="@+id/editTextPasswordRegisterId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -62,7 +79,7 @@
         android:textColorLink="@color/white" />
 
     <Button
-        android:id="@+id/loginWithEmailButtonId"
+        android:id="@+id/loginWithEmailButtonRegisterId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
@@ -82,7 +99,7 @@
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <View
@@ -113,7 +130,7 @@
     </LinearLayout>
 
     <com.shobhitpuri.custombuttons.GoogleSignInButton
-        android:id="@+id/btLoginGoogleId"
+        android:id="@+id/btLoginGoogleRegisterId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -121,7 +138,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="15dp"
-        android:text="@string/google_sign_in" />
+        android:text="@string/google_sign_up" />
 
     <!-- <com.facebook.login.widget.LoginButton
         android:layout_width="match_parent"

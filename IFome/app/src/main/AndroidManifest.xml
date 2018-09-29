@@ -16,43 +16,30 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.InitialNoActionBar">
 
-        </activity>
-        <activity
-            android:name=".activities.LoginActivity"
-            android:theme="@style/AppTheme.InitialNoActionBar">
-        </activity>
-
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
-        <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.InitialActivity" />
-        <activity
-            android:name=".activities.FoodDetailsActivity"
-            android:label="Detalhes da Comida">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity
+            android:name=".activities.LoginActivity"
+            android:theme="@style/AppTheme.InitialNoActionBar">
+        </activity>
+        <activity android:name=".activities.InitialActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.RegisterActivity"
+            android:theme="@style/AppTheme.InitialNoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.FoodDetailsActivity"
+            android:label="Detalhes da Comida">
+        </activity>
+</application>
 
 </manifest>
